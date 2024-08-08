@@ -75,26 +75,3 @@ public_users.get('/review/:isbn',function (req, res) {
 
 module.exports.general = public_users;
 
-
-// Get the list of books using Promise callbacks
-public_users.get('/books', (req, res) => {
-    axios.get('/api/books')
-      .then(response => {
-        res.json(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching books:', error);
-        res.status(500).json({ error: 'An error occurred while fetching books.' });
-      });
-  });
-  
-  // Get the list of books using async/await
-  public_users.get('/books-async', async (req, res) => {
-    try {
-      const response = await axios.get('/api/books');
-      res.json(response.data);
-    } catch (error) {
-      console.error('Error fetching books:', error);
-      res.status(500).json({ error: 'An error occurred while fetching books.' });
-    }
-  });
